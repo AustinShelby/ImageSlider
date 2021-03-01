@@ -41,7 +41,7 @@ const Home = () => {
   };
 
   return (
-    <div className="flex">
+    <div className="px-6">
       <div
         ref={imageContainer}
         className="max-w-2xl w-full mt-32 mx-auto relative select-none group"
@@ -67,7 +67,7 @@ const Home = () => {
             left: `${slideAmount.frac * 100}%`,
             touchAction: "none",
           }}
-          className="absolute inset-y-0 pointer-events-auto opacity-0 group-hover:opacity-100"
+          className="absolute inset-y-0 sm:opacity-0 group-hover:opacity-100"
         >
           <div className="relative h-full hover:opacity-100 opacity-50">
             <div className="inset-y-0 absolute w-0.5 -ml-px bg-white"></div>
