@@ -5,7 +5,7 @@ const Home = () => {
 
   const imageContainer = useRef<HTMLDivElement>(undefined);
 
-  const handleMouseMove = (event: any): void => {
+  const handleMouseMove = (event: PointerEvent): void => {
     const imageContainerBoundingRect = imageContainer.current.getBoundingClientRect();
     setSlideAmount(() => {
       if (event.clientX < imageContainerBoundingRect.left) {
@@ -23,17 +23,24 @@ const Home = () => {
   };
 
   const handleMouseDown = (): void => {
-    window.onmouseup = handleMouseUp;
-    window.ontouchend = handleMouseUp;
-    window.onmousemove = handleMouseMove;
-    window.ontouchmove = handleMouseMove;
+    // window.onmouseup = handleMouseUp;
+    // window.ontouchend = handleMouseUp;
+    // window.onmousemove = handleMouseMove;
+    // window.ontouchmove = handleMouseMove;
+    // window.ondrag = handleMouseMove;
+    window.onpointerup = handleMouseUp;
+    window.onpointercancel = handleMouseUp;
+    window.onpointermove = handleMouseMove;
   };
 
   const handleMouseUp = (): void => {
-    window.onmousemove = undefined;
-    window.ontouchmove = undefined;
-    window.onmouseup = undefined;
-    window.ontouchend = undefined;
+    // window.onmousemove = undefined;
+    // window.ontouchmove = undefined;
+    // window.onmouseup = undefined;
+    // window.ontouchend = undefined;
+    window.onpointerup = undefined;
+    window.onpointercancel = undefined;
+    window.onpointermove = undefined;
   };
 
   console.log("rendering");
@@ -69,8 +76,10 @@ const Home = () => {
           <div className="relative h-full hover:opacity-100 opacity-50">
             <div className="inset-y-0 absolute w-0.5 -ml-px bg-white"></div>
             <div
-              onMouseDown={handleMouseDown}
-              onTouchStart={handleMouseDown}
+              // onDragStart={handleMouseDown}
+              // onMouseDown={handleMouseDown}
+              // onTouchStart={handleMouseDown}
+              onPointerDown={handleMouseDown}
               className="w-12 -ml-6 h-12 -mt-6 top-1/2 cursor-pointer rounded-full bg-white absolute flex items-center justify-center shadow-lg"
             >
               <svg
