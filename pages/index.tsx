@@ -5,51 +5,46 @@ const Home = () => {
 
   const imageContainer = useRef<HTMLDivElement>(undefined);
 
-  const handleMouseMove = (event: PointerEvent): void => {
+  const handleMouseMove = (event: MouseEvent): void => {
+    slide(event.clientX);
+  };
+
+  const slide = (xPosition: number): void => {
     const imageContainerBoundingRect = imageContainer.current.getBoundingClientRect();
     setSlideAmount(() => {
-      if (event.clientX < imageContainerBoundingRect.left) {
+      if (xPosition < imageContainerBoundingRect.left) {
         return { frac: 0 };
-      } else if (event.clientX > imageContainerBoundingRect.right) {
+      } else if (xPosition > imageContainerBoundingRect.right) {
         return { frac: 1 };
       } else {
         return {
           frac:
-            (event.clientX - imageContainerBoundingRect.left) /
+            (xPosition - imageContainerBoundingRect.left) /
             imageContainerBoundingRect.width,
         };
       }
     });
   };
 
-  const handleMouseDown = (): void => {
-    // window.onmouseup = handleMouseUp;
-    // window.ontouchend = handleMouseUp;
-    // window.onmousemove = handleMouseMove;
-    // window.ontouchmove = handleMouseMove;
-    // window.ondrag = handleMouseMove;
-    window.onpointerup = handleMouseUp;
-    window.onpointercancel = handleMouseUp;
-    window.onpointermove = handleMouseMove;
+  const handleTouchMove = (event: React.TouchEvent<HTMLDivElement>): void => {
+    slide(event.touches[0].clientX);
+  };
+
+  const handleMouseDown = (event: any): void => {
+    window.onmouseup = handleMouseUp;
+    window.onmousemove = handleMouseMove;
   };
 
   const handleMouseUp = (): void => {
-    // window.onmousemove = undefined;
-    // window.ontouchmove = undefined;
-    // window.onmouseup = undefined;
-    // window.ontouchend = undefined;
-    window.onpointerup = undefined;
-    window.onpointercancel = undefined;
-    window.onpointermove = undefined;
+    window.onmouseup = undefined;
+    window.onmousemove = undefined;
   };
 
-  console.log("rendering");
-
   return (
-    <div className="flex items-center min-h-screen justify-center">
+    <div className="flex">
       <div
         ref={imageContainer}
-        className="max-w-2xl w-full mx-auto relative select-none group"
+        className="max-w-2xl w-full mt-32 mx-auto relative select-none group"
       >
         <img
           src="https://images.unsplash.com/photo-1498855926480-d98e83099315?ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80"
@@ -70,16 +65,15 @@ const Home = () => {
         <div
           style={{
             left: `${slideAmount.frac * 100}%`,
+            touchAction: "none",
           }}
           className="absolute inset-y-0 pointer-events-auto opacity-0 group-hover:opacity-100"
         >
           <div className="relative h-full hover:opacity-100 opacity-50">
             <div className="inset-y-0 absolute w-0.5 -ml-px bg-white"></div>
             <div
-              // onDragStart={handleMouseDown}
-              // onMouseDown={handleMouseDown}
-              // onTouchStart={handleMouseDown}
-              onPointerDown={handleMouseDown}
+              onMouseDown={handleMouseDown}
+              onTouchMove={handleTouchMove}
               className="w-12 -ml-6 h-12 -mt-6 top-1/2 cursor-pointer rounded-full bg-white absolute flex items-center justify-center shadow-lg"
             >
               <svg
