@@ -44,16 +44,16 @@ const Home = () => {
     <div className="px-6">
       <div
         ref={imageContainer}
-        className="max-w-2xl w-full mt-32 mx-auto relative select-none group"
+        className="max-w-lg w-full mt-32 mx-auto relative select-none group"
       >
         <img
-          src="https://images.unsplash.com/photo-1498855926480-d98e83099315?ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80"
+          src="https://images.unsplash.com/photo-1546704259-d4dac118f426?ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80"
           alt=""
           className="pointer-events-none"
           style={{ filter: "grayscale(100%)" }}
         />
         <img
-          src="https://images.unsplash.com/photo-1498855926480-d98e83099315?ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80"
+          src="https://images.unsplash.com/photo-1546704259-d4dac118f426?ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80"
           alt=""
           className="absolute inset-0 pointer-events-none"
           style={{
