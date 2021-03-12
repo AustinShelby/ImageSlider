@@ -27,7 +27,7 @@ const Home = () => {
   };
 
   const handleTouchMove = (event: React.TouchEvent<HTMLDivElement>): void => {
-    slide(event.touches[0].clientX);
+    slide(event.touches.item(0).clientX);
   };
 
   const handleMouseDown = (event: any): void => {
