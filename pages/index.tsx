@@ -66,6 +66,7 @@ const HomePage = () => {
           <div className="relative h-full opacity-50 hover:opacity-100">
             <div className="absolute inset-y-0 bg-white w-0.5 -ml-px"></div>
             <div
+              style={{ touchAction: "none" }}
               onMouseDown={handleMouseDown}
               onTouchMove={handleTouchMove}
               className="h-12 w-12 -ml-6 -mt-6 rounded-full bg-white absolute top-1/2 shadow-xl flex items-center justify-center cursor-pointer"
